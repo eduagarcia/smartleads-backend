@@ -1,0 +1,483 @@
+swagger: "2.0"
+info:
+  description: "Documentação da API backend do SmartLeads"
+  version: "1.0.0"
+  title: "SmartLeads"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "apiteam@swagger.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "dadospessoastore.swagger.io"
+basePath: "/v2"
+tags:
+- name: "dadospessoa"
+  description: "Dados sobre Pessoa"
+- name: "empresa"
+  description: "Dados sobre Empresa"
+- name: "cliente"
+  description: "Operations about user"
+schemes:
+- "https"
+- "http"
+paths:
+  /dadospessoa/listar:
+    get:
+      tags:
+      - "dadospessoa"
+      summary: "Lista Pessoas"
+      description: "Podem ser feito filtros por uma lista de ID's"
+      operationId: "listardadospessoa"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "ids"
+        in: "query"
+        description: "Lista de ID's consideradas para o filtro, vazio retorna todas as Pessoas"
+        required: false
+        type: "array"
+        items:
+          type: "integer"
+          format: "int32"
+        collectionFormat: "multi"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/DadosPessoa"
+        "400":
+          description: "Operação bem-sucedida"
+  /dadospessoa/{dap_id}:
+    get:
+      tags:
+      - "dadospessoa"
+      summary: "Retorna os dados de pessoa a partir do seu id"
+      description: ""
+      operationId: "getdadospessoa"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "dap_id"
+        in: "path"
+        description: "ID da pessoa"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Operação bem-sucedida"
+          schema:
+            $ref: "#/definitions/DadosPessoa"
+        "400":
+          description: "ID inválido"
+        "404":
+          description: "Pessoa não encontrada"
+    delete:
+      tags:
+      - "dadospessoa"
+      summary: "Deletes a Pessoa"
+      description: ""
+      operationId: "deletedadospessoa"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "dap_id"
+        in: "path"
+        description: "ID da pessoa a ser deletada"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "400":
+          description: "ID inválido"
+        "404":
+          description: "Pessoa não encontrada"
+  /dadospessoa:
+    put:
+      tags:
+      - "dadospessoa"
+      summary: "Atualiza uma pessoa existente"
+      description: ""
+      operationId: "updatedadospessoa"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Modelo de DadosPessoa que precisa ser autualizado com o ID"
+        required: true
+        schema:
+          $ref: "#/definitions/DadosPessoa"
+      responses:
+        "400":
+          description: "ID inválido"
+        "404":
+          description: "Pessoa não encontrada"
+        "405":
+          description: "Modelo de dados Inválido"
+    post:
+      tags:
+      - "dadospessoa"
+      summary: "Adiciona uma nova Pessoa a base de dados"
+      description: ""
+      operationId: "adddadospessoa"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Modelo de DadosPessoa que precisa ser adicionado"
+        required: true
+        schema:
+          $ref: "#/definitions/DadosPessoa"
+      responses:
+        "405":
+          description: "Modelo de dados Inválido"
+  /empresa/listar:
+    get:
+      tags:
+      - "empresa"
+      summary: "Lista Empresas"
+      description: "Podem ser feito filtros por uma lista de ID's"
+      operationId: "listarempresa"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "ids"
+        in: "query"
+        description: "Lista de ID's consideradas para o filtro, vazio retorna todas as Empresas"
+        required: false
+        type: "array"
+        items:
+          type: "integer"
+          format: "int32"
+        collectionFormat: "multi"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Empresa"
+        "400":
+          description: "Operação bem-sucedida"
+  /empresa/{emp_id}:
+    get:
+      tags:
+      - "empresa"
+      summary: "Retorna os dados de empresa a partir do seu id"
+      description: ""
+      operationId: "getempresa"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "emp_id"
+        in: "path"
+        description: "ID da empresa"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Operação bem-sucedida"
+          schema:
+            $ref: "#/definitions/Empresa"
+        "400":
+          description: "ID inválido"
+        "404":
+          description: "Empresa não encontrada"
+    delete:
+      tags:
+      - "empresa"
+      summary: "Deletes a empresa"
+      description: ""
+      operationId: "deleteempresa"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "emp_id"
+        in: "path"
+        description: "ID da empresa a ser deletada"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "400":
+          description: "ID inválido"
+        "404":
+          description: "Empresa não encontrada"
+  /empresa:
+    put:
+      tags:
+      - "empresa"
+      summary: "Atualiza uma empresa existente"
+      description: ""
+      operationId: "updateempresa"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Modelo de Empresa que precisa ser autualizado com o ID"
+        required: true
+        schema:
+          $ref: "#/definitions/Empresa"
+      responses:
+        "400":
+          description: "ID inválido"
+        "404":
+          description: "Empresa não encontrada"
+        "405":
+          description: "Modelo de dados Inválido"
+    post:
+      tags:
+      - "empresa"
+      summary: "Adiciona uma nova Empresa a base de dados"
+      description: ""
+      operationId: "addempresa"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Modelo de Empresa que precisa ser adicionado"
+        required: true
+        schema:
+          $ref: "#/definitions/Empresa"
+      responses:
+        "405":
+          description: "Modelo de dados Inválido"
+  /cliente/listar:
+    get:
+      tags:
+      - "cliente"
+      summary: "Lista Clientes"
+      description: "Podem ser feito filtros por uma lista de ID's"
+      operationId: "listarcliente"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "ids"
+        in: "query"
+        description: "Lista de ID's consideradas para o filtro, vazio retorna todas as Clientes"
+        required: false
+        type: "array"
+        items:
+          type: "integer"
+          format: "int32"
+        collectionFormat: "multi"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Cliente"
+        "400":
+          description: "Operação bem-sucedida"
+  /cliente/{cli_id}:
+    get:
+      tags:
+      - "cliente"
+      summary: "Retorna os dados de cliente a partir do seu id"
+      description: ""
+      operationId: "getcliente"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "cli_id"
+        in: "path"
+        description: "ID da cliente"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Operação bem-sucedida"
+          schema:
+            $ref: "#/definitions/Cliente"
+        "400":
+          description: "ID inválido"
+        "404":
+          description: "Cliente não encontrada"
+    delete:
+      tags:
+      - "cliente"
+      summary: "Deletes a cliente"
+      description: ""
+      operationId: "deletecliente"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "cli_id"
+        in: "path"
+        description: "ID da cliente a ser deletada"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "400":
+          description: "ID inválido"
+        "404":
+          description: "Cliente não encontrada"
+  /cliente:
+    put:
+      tags:
+      - "cliente"
+      summary: "Atualiza uma cliente existente"
+      description: ""
+      operationId: "updatecliente"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Modelo de Cliente que precisa ser autualizado com o ID"
+        required: true
+        schema:
+          $ref: "#/definitions/Cliente"
+      responses:
+        "400":
+          description: "ID inválido"
+        "404":
+          description: "Cliente não encontrada"
+        "405":
+          description: "Modelo de dados Inválido"
+    post:
+      tags:
+      - "cliente"
+      summary: "Adiciona uma nova Cliente a base de dados"
+      description: ""
+      operationId: "addcliente"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Modelo de Cliente que precisa ser adicionado"
+        required: true
+        schema:
+          $ref: "#/definitions/Cliente"
+      responses:
+        "405":
+          description: "Modelo de dados Inválido"
+definitions:
+  DadosPessoa:
+    type: "object"
+    properties:
+      dap_id:
+        type: "integer"
+        format: "int64"
+      dap_nome:
+        type: "string"
+      dap_conexoes:
+        type: "string"
+      dap_formacao:
+        type: "string"
+      dap_localizacao:
+        type: "string"
+      dap_cargo:
+        type: "string"
+      dap_contato:
+        type: "string"
+      dap_insertdate:
+        type: "string"
+        format: "date-time"
+      dap_active:
+        type: "boolean"
+        default: true
+      fon_id:
+        type: "integer"
+        format: "int64"
+    xml:
+      name: "DadosPessoa"
+  Empresa:
+    type: "object"
+    properties:
+      emp_id:
+        type: "integer"
+        format: "int64"
+      emp_site:
+        type: "string"
+      emp_conexoes:
+        type: "string"
+      emp_nome:
+        type: "string"
+      emp_link:
+        type: "string"
+      emp_telefone:
+        type: "string"
+      emp_localizacao:
+        type: "string"
+      emp_datafundacao:
+        type: "string"
+        format: "date-time"
+      emp_especializacao:
+        type: "string"
+      emp_insertdate:
+        type: "string"
+        format: "date-time"
+      emp_active:
+        type: "boolean"
+        default: true
+      sep_id:
+        type: "integer"
+        format: "int64"
+      tip_id:
+        type: "integer"
+        format: "int64"
+      tap_id:
+        type: "integer"
+        format: "int64"
+    xml:
+      name: "Empresa"
+  Cliente:
+    type: "object"
+    properties:
+      cli_id:
+        type: "integer"
+        format: "int64"
+      cli_nome:
+        type: "string"
+      cli_insertdate:
+        type: "string"
+        format: "date-time"
+      cli_active:
+        type: "boolean"
+        default: true
+    xml:
+      name: "Cliente"
+  ApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      type:
+        type: "string"
+      message:
+        type: "string"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"

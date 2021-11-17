@@ -1,0 +1,41 @@
+/api/dadospessoa/{pessoa_id}:
+  get:
+    tags:
+      - DadosPessoa
+    security: []
+    description: Dados de pessoa
+    parameters:
+      - name: credentials
+        in:  body
+        schema:
+          properties:
+            phone:
+              type: string
+              example: '1234567890'
+              required: true
+    produces:
+      - application/json
+    responses:
+      200:
+        description: Success
+
+/api/dadospessoa2:
+  get:
+    tags:
+      - DadosPessoa
+    security: []
+    description: Dados de pessoa
+    parameters:
+      - name: credentials
+        in:  body
+        schema:
+          properties:
+            phone:
+              type: string
+              example: '1234567890'
+              required: true
+    produces:
+      - application/json
+    responses:
+      200:
+        description: Success

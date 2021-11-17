@@ -1,28 +1,30 @@
 definitions:
-  Order:
+  DadosPessoa:
     type: "object"
     properties:
-      id:
+      dap_id:
         type: "integer"
         format: "int64"
-      petId:
-        type: "integer"
-        format: "int64"
-      quantity:
-        type: "integer"
-        format: "int32"
-      shipDate:
+      dap_nome:
+        type: "string"
+      dap_conexoes:
+        type: "string"
+      dap_formacao:
+        type: "string"
+      dap_localizacao:
+        type: "string"
+      dap_cargo:
+        type: "string"
+      dap_contato:
+        type: "string"
+      dap_insertdate:
         type: "string"
         format: "date-time"
-      status:
-        type: "string"
-        description: "Order Status"
-        enum:
-        - "placed"
-        - "approved"
-        - "delivered"
-      complete:
+      dap_active:
         type: "boolean"
-        default: false
+        default: true
+      fon_id:
+        type: "integer"
+        format: "int64"
     xml:
-      name: "Order"
+      name: "DadosPessoa"

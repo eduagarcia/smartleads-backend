@@ -1,0 +1,20 @@
+definitions:
+  ParametrosBusca:
+    type: "object"
+    properties:
+      pab_id:
+        type: "integer"
+        format: "int64"
+      pab_busca:
+        type: "string"
+      pab_insertdate:
+        type: "string"
+        format: "date-time"
+      pab_active:
+        type: "boolean"
+        default: true
+      eng_id:
+        type: "integer"
+        format: "int64"
+    xml:
+      name: "ParametrosBusca"

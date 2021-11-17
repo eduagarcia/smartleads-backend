@@ -1,0 +1,17 @@
+definitions:
+  Cliente:
+    type: "object"
+    properties:
+      cli_id:
+        type: "integer"
+        format: "int64"
+      cli_nome:
+        type: "string"
+      cli_insertdate:
+        type: "string"
+        format: "date-time"
+      cli_active:
+        type: "boolean"
+        default: true
+    xml:
+      name: "Cliente"

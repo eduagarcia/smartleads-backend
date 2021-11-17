@@ -1,0 +1,17 @@
+definitions:
+  Engine:
+    type: "object"
+    properties:
+      eng_id:
+        type: "integer"
+        format: "int64"
+      eng_nome:
+        type: "string"
+      eng_insertdate:
+        type: "string"
+        format: "date-time"
+      eng_active:
+        type: "boolean"
+        default: true
+    xml:
+      name: "Engine"

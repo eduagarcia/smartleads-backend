@@ -1,0 +1,41 @@
+definitions:
+  Empresa:
+    type: "object"
+    properties:
+      emp_id:
+        type: "integer"
+        format: "int64"
+      emp_site:
+        type: "string"
+      emp_conexoes:
+        type: "string"
+      emp_nome:
+        type: "string"
+      emp_link:
+        type: "string"
+      emp_telefone:
+        type: "string"
+      emp_localizacao:
+        type: "string"
+      emp_datafundacao:
+        type: "string"
+        format: "date-time"
+      emp_especializacao:
+        type: "string"
+      emp_insertdate:
+        type: "string"
+        format: "date-time"
+      emp_active:
+        type: "boolean"
+        default: true
+      sep_id:
+        type: "integer"
+        format: "int64"
+      tip_id:
+        type: "integer"
+        format: "int64"
+      tap_id:
+        type: "integer"
+        format: "int64"
+    xml:
+      name: "Empresa"
